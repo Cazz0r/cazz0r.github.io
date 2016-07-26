@@ -80,7 +80,7 @@
 			var min = Number($('#min').val().replace(/[^0-9\.]+/g,"")),
 				max = Number($('#max').val().replace(/[^0-9\.]+/g,""));
 				var rand = randomIntFromInterval(min, max);				
-			$('#result').html(rand + ' (' + min + ' - ' + max + ')');
+			$('#result').html(rand + ' (' + min + ' - ' + max + ')'); 
 			$('#result-container').show();
 		});
 	});
