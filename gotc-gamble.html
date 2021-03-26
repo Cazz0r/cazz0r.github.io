@@ -24,7 +24,26 @@
 
 	<!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <style>
+        .text-poor { 
+            color: #6f6f6f;
+        }
+        .text-common {
+            color: #528029;
+        }
+        .text-fine {
+            color: #3d7ebd;
+        }
+        .text-exquisite {
+            color: #84308e;
+        }
+        .text-epic {
+            color: #ac622c;
+        }
+        .text-legendary {
+            color: #766e23;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,51 +54,55 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>GOTC Gamble</h1>
-            <p>Input your current piece you're considering gambling and the potential results will be displayed.</p>
-            <p>
-                <div class="input-group">
-                    <div class="input-group-addon">Level</div>
-                    <select id="level" class="form-control">
-                        <option value="1">1</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                        <option value="35">35</option>
-                        <option value="40">40</option>
-                        <option value="45">45</option>
-                        <option value="50">50</option>
-                    </select>
-                </div>
-            </p>
-            <p>
-                <div class="input-group">
-                    <div class="input-group-addon">Quality</div>
-                    <select id="quality" class="form-control">
-                        <option value="poor">Poor</option>
-                        <option value="common">Common</option>
-                        <option value="fine">Fine</option>
-                        <option value="exquisite">Exquisite</option>
-                        <option value="epic">Epic</option>
-                        <option value="legendary">Legendary</option>
-                    </select>
-                </div>
-            </p>
-            <p><a class="btn btn-success btn-large" id="gamble">Let's Gamble!</a></p>
-            <div class="panel panel-primary" id="result-container" style="display:none;">
-                <div class="panel-heading">
-                    <h3 class="panel-title"></h3>
-                </div>
-                <div class="panel-body">
+            <p>Input your current piece you're considering gambling and the potential armory points will be displayed.</p>
+        </header>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    <div class="input-group">
+                        <div class="input-group-addon">Level</div>
+                        <select id="level" class="form-control">
+                            <option value="1">1</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </p>
+                <p>
+                    <div class="input-group">
+                        <div class="input-group-addon">Quality</div>
+                        <select id="quality" class="form-control">
+                            <option value="poor">Poor</option>
+                            <option value="common">Common</option>
+                            <option value="fine">Fine</option>
+                            <option value="exquisite">Exquisite</option>
+                            <option value="epic">Epic</option>
+                            <option value="legendary">Legendary</option>
+                        </select>
+                    </div>
+                </p>
+                <p><a class="btn btn-success btn-large" id="gamble">Let's Gamble!</a></p>
+                <div class="panel panel-primary" id="result-container" style="display:none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                    </div>
+                    <div class="panel-body">
 
-                </div>
-                <div class="panel-footer">
+                    </div>
+                    <div class="panel-footer">
 
+                    </div>
                 </div>
             </div>
-        </header>
+        </div>
 
         <hr>
 
@@ -273,9 +296,10 @@
         }
     }
 
+    const qualities = [ 'poor', 'common', 'fine', 'exquisite', 'epic', 'legendary' ];
+
     $(document).ready(function(){
-		$('#gamble').click(function(){
-			
+		$('#gamble').click(function(){		
             var level = $('#level').val(), quality = $('#quality').val();
             if(level == 1){
                 var newlevel = 5;
@@ -288,12 +312,12 @@
                 '<thead>' +
                     '<tr>' + 
                         '<th>Quality</th>' +
-                        '<th>Points</th>' + 
-                        '<th>Change</th>' +
+                        '<th class="text-right">Points</th>' + 
+                        '<th class="text-right">Change</th>' +
                     '</tr>' +
                 '</thead>' +
                 '<tbody>';
-            const qualities = [ 'poor', 'common', 'fine', 'exquisite', 'epic', 'legendary' ];
+            
             qualities.forEach(function(val, index){
                 var newPoints = ArmoryPoints(newlevel, val);
                 var change = parseInt(newPoints, 10) - parseInt(currentPoints, 10);
@@ -307,15 +331,15 @@
 
                 html = html +
                     '<tr>' + 
-                        '<th>' + val.charAt(0).toUpperCase() + val.slice(1) + '</th>' + 
-                        '<td>' + Number(newPoints).toLocaleString() + '</td>' + 
-                        '<td class="' + changeClass + '">' + changeSymbol + Number(change).toLocaleString() + '</td>' +  
+                        '<th class="text-' + val + '">' + val.charAt(0).toUpperCase() + val.slice(1) + '</th>' + 
+                        '<td class="text-right">' + Number(newPoints).toLocaleString() + '</td>' + 
+                        '<td class="text-right ' + changeClass + '">' + changeSymbol + Number(change).toLocaleString() + '</td>' +  
                     '</tr>';    
             });
             
-
+            html = html + 
                 '</tbody>' +
-            '</table>';
+            '</table><p><strong>What\'s this mean?</strong> If your gamble results in a quality with a positive change value, you\'ve improved upon the previous armory point value and the gamble can be considered as being worthwhile.</p>';
 
 
 			$('#result-container').find('.panel-title').html('Level ' + newlevel + ' Armory Points'); 
