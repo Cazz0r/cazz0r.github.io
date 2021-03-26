@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cazz0r @ GitHub - GOTC Gambler</title>
+
+    <!-- Bootstrap via cdnjs -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>GOTC Gambler</h1>
+            <p>Input your current piece you're considering gambling and the potential results will be displayed.</p>
+            <p>
+                <div class="input-group">
+                    <div class="input-group-addon">Level</div>
+                    <select id="level" class="form-control">
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </p>
+            <p>
+                <div class="input-group">
+                    <div class="input-group-addon">Quality</div>
+                    <select id="quality" class="form-control">
+                        <option value="poor">Poor</option>
+                        <option value="common">Common</option>
+                        <option value="fine">Fine</option>
+                        <option value="exquisite">Exquisite</option>
+                        <option value="epic">Epic</option>
+                        <option value="legendary">Legendary</option>
+                    </select>
+                </div>
+            </p>
+            <p><a class="btn btn-success btn-large" id="gamble">Let's Gamble!</a></p>
+            <div class="panel panel-primary" id="result-container" style="display:none;">
+                <div class="panel-heading">
+                    <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+
+                </div>
+                <div class="panel-footer">
+
+                </div>
+            </div>
+        </header>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Cazz0r | <a href="https://github.com/Cazz0r/cazz0r.github.io/blob/master/gotc-gamble.html">View Source</a></p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+   	<!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Bootstrap via cdnjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+    function ArmoryPoints($Level, $Quality){
+        console.log('Armory Points: ' + $Level + ', ' + $Quality);
+        switch(parseInt($Level, 10)){
+            case 1:
+                switch($Quality){
+                    case 'poor':
+                        return 1;
+                    case 'common':
+                        return 2;
+                    case 'fine':
+                        return 4;
+                    case 'exquisite':
+                        return 6;
+                    case 'epic':
+                        return 8;
+                    case 'legendary':
+                        return 10;
+                }
+            case 5:
+                switch($Quality){
+                    case 'poor':
+                        return 10;
+                    case 'common':
+                        return 10;
+                    case 'fine':
+                        return 20;
+                    case 'exquisite':
+                        return 20;
+                    case 'epic':
+                        return 40;
+                    case 'legendary':
+                        return 140;
+                }
+            case 10:
+                switch($Quality){
+                    case 'poor':
+                        return 40;
+                    case 'common':
+                        return 40;
+                    case 'fine':
+                        return 40;
+                    case 'exquisite':
+                        return 40;
+                    case 'epic':
+                        return 100;
+                    case 'legendary':
+                        return 300;
+                }
+            case 15:
+                switch($Quality){
+                    case 'poor':
+                        return 100;
+                    case 'common':
+                        return 120;
+                    case 'fine':
+                        return 120;
+                    case 'exquisite':
+                        return 180;
+                    case 'epic':
+                        return 400;
+                    case 'legendary':
+                        return 1320;
+                }
+            case 20:
+                switch($Quality){
+                    case 'poor':
+                        return 320;
+                    case 'common':
+                        return 340;
+                    case 'fine':
+                        return 380;
+                    case 'exquisite':
+                        return 580;
+                    case 'epic':
+                        return 1380;
+                    case 'legendary':
+                        return 4560;
+                }
+            case 25:
+                switch($Quality){
+                    case 'poor':
+                        return 920;
+                    case 'common':
+                        return 960;
+                    case 'fine':
+                        return 1140;
+                    case 'exquisite':
+                        return 1880;
+                    case 'epic':
+                        return 4820;
+                    case 'legendary':
+                        return 16600;
+                }
+            case 30:
+                switch($Quality){
+                    case 'poor':
+                        return 2580;
+                    case 'common':
+                        return 2720;
+                    case 'fine':
+                        return 3220;
+                    case 'exquisite':
+                        return 5280;
+                    case 'epic':
+                        return 13540;
+                    case 'legendary':
+                        return 46500;
+                }
+            case 35:
+                switch($Quality){
+                    case 'poor':
+                        return 7360;
+                    case 'common':
+                        return 7840;
+                    case 'fine':
+                        return 9720;
+                    case 'exquisite':
+                        return 17260;
+                    case 'epic':
+                        return 47380;
+                    case 'legendary':
+                        return 167920;
+                }
+            case 40:
+                switch($Quality){
+                    case 'poor':
+                        return 20960;
+                    case 'common':
+                        return 22700;
+                    case 'fine':
+                        return 29700;
+                    case 'exquisite':
+                        return 57680;
+                    case 'epic':
+                        return 169600;
+                    case 'legendary':
+                        return 617300;
+                }
+            case 45:
+                switch($Quality){
+                    case 'poor':
+                        return 58940;
+                    case 'common':
+                        return 64020;
+                    case 'fine':
+                        return 84340;
+                    case 'exquisite':
+                        return 165600;
+                    case 'epic':
+                        return 490640;
+                    case 'legendary':
+                        return 1790820;
+                }
+            case 50:
+                switch($Quality){
+                    case 'poor':
+                        return 165520;
+                    case 'common':
+                        return 183380;
+                    case 'fine':
+                        return 254820;
+                    case 'exquisite':
+                        return 540560;
+                    case 'epic':
+                        return 1683520;
+                    case 'legendary':
+                        return 6255380;
+                }
+        }
+    }
+
+    $(document).ready(function(){
+		$('#gamble').click(function(){
+			
+            var level = $('#level').val(), quality = $('#quality').val();
+            if(level == 1){
+                var newlevel = 5;
+            }else{
+                newlevel = parseInt(level, 10) + 5;
+            }
+            var currentPoints = ArmoryPoints(level, quality);
+            
+            var html = '<table class="table table-bordered">' +
+                '<thead>' +
+                    '<tr>' + 
+                        '<th>Quality</th>' +
+                        '<th>Points</th>' + 
+                        '<th>Change</th>' +
+                    '</tr>' +
+                '</thead>' +
+                '<tbody>';
+            const qualities = [ 'poor', 'common', 'fine', 'exquisite', 'epic', 'legendary' ];
+            qualities.forEach(function(val, index){
+                var newPoints = ArmoryPoints(newlevel, val);
+                var change = parseInt(newPoints, 10) - parseInt(currentPoints, 10);
+                
+                var changeSymbol = '+';
+                var changeClass = '';
+                if(change < 0){
+                    changeSymbol = '';
+                    changeClass = 'bg-danger';
+                }
+
+                html = html +
+                    '<tr>' + 
+                        '<th>' + val.charAt(0).toUpperCase() + val.slice(1) + '</th>' + 
+                        '<td>' + Number(newPoints).toLocaleString() + '</td>' + 
+                        '<td class="' + changeClass + '">' + changeSymbol + Number(change).toLocaleString() + '</td>' +  
+                    '</tr>';    
+            });
+            
+
+                '</tbody>' +
+            '</table>';
+
+
+			$('#result-container').find('.panel-title').html('Level ' + newlevel + ' Possibilities'); 
+            $('#result-container').find('.panel-body').html(html); 
+            $('#result-container').find('.panel-footer').html('Existing Armory Points: ' + Number(currentPoints).toLocaleString()); 
+			$('#result-container').show();
+		});
+	});
+	</script>
+</body>
+
+</html>
