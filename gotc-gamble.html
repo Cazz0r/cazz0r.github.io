@@ -318,9 +318,9 @@
             '</table>';
 
 
-			$('#result-container').find('.panel-title').html('Level ' + newlevel + ' Possibilities'); 
+			$('#result-container').find('.panel-title').html('Level ' + newlevel + ' Armory Points'); 
             $('#result-container').find('.panel-body').html(html); 
-            $('#result-container').find('.panel-footer').html('Existing Armory Points: ' + Number(currentPoints).toLocaleString()); 
+            $('#result-container').find('.panel-footer').html('Level ' + level + ' ' + quality.charAt(0).toUpperCase() + quality.slice(1) + ' Armory Points: ' + Number(currentPoints).toLocaleString()); 
 			$('#result-container').show();
 		});
 	});
